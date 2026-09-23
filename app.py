@@ -5,7 +5,7 @@ import hmac
 import secrets
 from functools import wraps
 from fractions import Fraction
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 from sqlalchemy.orm import contains_eager
 from sqlalchemy.exc import OperationalError
 from werkzeug.exceptions import HTTPException
@@ -567,6 +567,7 @@ def create_app(test_config=None):
             current_user=current_user.nickname,
             my_stocks=my_stocks,
             portfolio_summary=portfolio_summary,
+            server_now_ms=int(datetime.now(timezone.utc).timestamp() * 1000),
         )
 
     @app.get("/history")

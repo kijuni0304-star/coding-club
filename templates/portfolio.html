@@ -17,6 +17,11 @@
 
         <!-- Total Asset Card -->
         <main class="main-content">
+            <section class="price-update-countdown" data-server-now-ms="{{ server_now_ms }}" aria-label="다음 주가 변동까지 남은 시간">
+                <span>다음 주가 변동까지</span>
+                <strong id="price-update-remaining" role="timer">--:--</strong>
+            </section>
+
             <!-- 총자산 카드 -->
             <section class="card total-card">
                 <div class="card-title">총자산</div>
@@ -67,5 +72,6 @@
         </div>
 
     </div>
+    <script src="{{ url_for('static', filename='js/portfolio-countdown.js') }}" defer></script>
 </body>
 </html>
