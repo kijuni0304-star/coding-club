@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 주식 순위</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ranking.css') }}">
+    
+</head>
+<body data-stock-page="ranking" data-stocks-api="{{ url_for('stocks_api') }}">
+    <div class="app-container">
+        <div class="header">
+            <h1>실시간 주식 순위</h1>
+            
+        </div>
+
+
+        <ul class="stock-list">
+            {% for stock in stocks %}
+            <li class="stock-item" data-stock-id="{{ stock.id }}">
+                <a class="stock-item-link" href="{{ url_for('order_detail', stock_id=stock.id) }}">
+                    <div class="stock-info">
+                        <span class="rank" data-rank>{{ loop.index }}</span>
+                        <span class="name">{{ stock.company_name }}</span>
+                    </div>
+                    <div class="stock-price-info">
+                        <div class="price" data-current-price>{{ stock.current_price_display }}</div>
+                        <div class="change-info {{ stock.change_class }}" data-change-info>
+                            <span data-change-amount>{{ stock.change_amount_display }}</span>
+                            <span class="change-badge {{ stock.direction }}" data-change-percent>{{ stock.change_percent_display }}</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div>
+            <!-- 네비게이션 바 -->
+            {% include '_navigation.html' %}
+        </div>
+    </div>
+    <script defer src="{{ url_for('static', filename='js/stock-prices.js') }}"></script>
+</body>
+</html>

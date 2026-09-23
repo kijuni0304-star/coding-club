@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>주식프로그램 로그인</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="header">
+            <h1>한빛 주식</h1>
+            <p>학교용 모의주식 · user1~user10 간편 로그인</p>
+        </div>
+
+        <!-- 로그인 폼 -->
+        <form action="{{ url_for('login') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token_value() }}">
+            <div class="input-group">
+                <label for="nickname">아이디 (닉네임)</label>
+                <!-- name="nickname"은 서버와 통신하기 위해 꼭 필요합니다 -->
+                <input type="text" id="nickname" name="nickname" placeholder="아이디를 입력하세요" required>
+            </div>
+            
+            <!-- 에러 메시지 출력 영역 (틀린 아이디 입력 시에만 나타남) -->
+            {% if error_msg %}
+                <div class="error-msg">{{ error_msg }}</div>
+            {% endif %}
+
+            <button type="submit" class="login-btn">로그인</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<nav class="bottom-nav" aria-label="주 메뉴">
+    {% for endpoint, label, icon in [
+        ('ranking', '주식 순위', 'chart'),
+        ('portfolio', '내 자산', 'home'),
+        ('order', '주식 주문', 'order'),
+        ('history', '거래 내역', 'history')
+    ] %}
+    {% set active = request.endpoint == endpoint or (endpoint == 'order' and request.endpoint == 'order_detail') %}
+    <a href="{{ url_for(endpoint) }}" class="nav-item{{ ' active' if active else '' }}" aria-label="{{ label }}"{% if active %} aria-current="page"{% endif %}>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            {% if icon == 'chart' %}
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            {% elif icon == 'home' %}
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>
+            {% elif icon == 'order' %}
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+            {% else %}
+            <circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline>
+            {% endif %}
+        </svg>
+    </a>
+    {% endfor %}
+    <form action="{{ url_for('logout') }}" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token_value() }}">
+        <button type="submit" class="nav-item" aria-label="로그아웃" title="로그아웃">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H4v16h5M9 12h12M17 8l4 4-4 4"></path></svg>
+        </button>
+    </form>
+</nav>

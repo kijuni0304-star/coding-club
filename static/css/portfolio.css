@@ -1,0 +1,174 @@
+.header {
+    padding: 30px 20px 15px;
+}
+.header .subtitle {
+    color: #888888;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.main-content {
+    padding: 0 20px;
+}
+
+/* 카드 공통 스타일 */
+.card {
+    background-color: #19202D; /* 어두운 네이비색 */
+    border-radius: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #242A38;
+}
+
+/* 총 평가금액 카드 상세 스타일 */
+.total-card {
+    padding: 24px;
+}
+
+.card-title {
+    color: #8A92A3;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.total-amount {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.unit {
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 4px;
+    color: #8A92A3;
+}
+
+.profit-loss {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.profit-label {
+    color: #8A92A3;
+    font-weight: 400;
+    margin-right: 6px;
+}
+
+.profit-loss.negative {
+    color: var(--sell-down);
+}
+
+.profit-loss.positive {
+    color: var(--buy-up);
+}
+
+.profit-loss.neutral {
+    color: var(--neutral);
+}
+
+/* 가로 구분선 */
+.divider {
+    height: 1px;
+    background-color: #242A38;
+    margin: 24px 0;
+}
+
+.deposit-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deposit-label {
+    color: #8A92A3;
+    font-size: 15px;
+}
+
+.deposit-amount {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.stock-total-row {
+    margin-top: 14px;
+}
+
+.stock-list {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.stock-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* 개별 주식 항목 스타일 */
+.stock-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+}
+
+.stock-info-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stock-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
+.icon-a { background-color: #264563; }
+
+.stock-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.stock-meta {
+    color: #8A92A3;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.stock-info-right {
+    text-align: right;
+}
+
+.stock-price {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.stock-price .unit {
+    font-size: 14px;
+}
+
+.market-value {
+    color: #8A92A3;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.empty-stock-list {
+    color: #8A92A3;
+    padding: 24px;
+    text-align: center;
+}
+.stock-item { flex-wrap: wrap; gap: 16px; }
+.stock-info-left, .stock-info-right { min-width: 0; overflow-wrap: anywhere; }
+.stock-info-right { margin-left: auto; }
+.stock-icon { flex-shrink: 0; }
+.deposit-row { flex-wrap: wrap; gap: 8px; }
+.total-amount, .deposit-amount { overflow-wrap: anywhere; }

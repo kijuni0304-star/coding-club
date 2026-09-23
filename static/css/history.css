@@ -1,0 +1,36 @@
+.app-container {
+    padding: 30px 20px 100px;
+}
+
+.header { margin-bottom: 24px; }
+.subtitle { color: var(--muted); font-size: 14px; margin-bottom: 5px; }
+h1 { font-size: 28px; margin: 0; }
+
+.history-list {
+    background: #19202D;
+    border: 1px solid #242A38;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.history-item {
+    align-items: center;
+    border-bottom: 1px solid #242A38;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 20px;
+}
+.history-item:last-child { border-bottom: 0; }
+.company-name { font-size: 17px; font-weight: 600; }
+.transaction-time { color: var(--muted); display: block; font-size: 13px; margin-top: 6px; }
+.transaction-right { text-align: right; }
+.transaction-detail { color: #B7BFCD; font-size: 13px; margin-left: 6px; }
+.transaction-type { font-size: 14px; font-weight: 700; }
+.transaction-type.buy { color: var(--buy-up); }
+.transaction-type.sell { color: var(--sell-down); }
+.transaction-type.neutral { color: var(--neutral); }
+.total-amount { font-size: 16px; font-weight: 600; margin-top: 7px; }
+.empty-history { color: var(--muted); padding: 28px 20px; text-align: center; }
+.history-item { flex-wrap: wrap; gap: 12px; }
+.transaction-left, .transaction-right { min-width: 0; overflow-wrap: anywhere; }
+.transaction-right { margin-left: auto; }

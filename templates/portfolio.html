@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 자산 관리</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portfolio.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="subtitle">한빛 주식</div>
+            <h1>내 주식</h1>
+        </div>
+
+        <!-- Total Asset Card -->
+        <main class="main-content">
+            <!-- 총자산 카드 -->
+            <section class="card total-card">
+                <div class="card-title">총자산</div>
+                <div class="total-amount">{{ portfolio_summary.total_asset_display }}<span class="unit">원</span></div>
+                <div class="profit-loss {{ portfolio_summary.profit_loss_class }}">
+                    <span class="profit-label">전체 평가손익</span>
+                    {{ portfolio_summary.profit_loss_display }}원 ({{ portfolio_summary.profit_loss_percent_display }})
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="deposit-row">
+                    <span class="deposit-label">예수금</span>
+                    <span class="deposit-amount">{{ portfolio_summary.cash_display }}원</span>
+                </div>
+                <div class="deposit-row stock-total-row">
+                    <span class="deposit-label">주식 총 평가금액</span>
+                    <span class="deposit-amount">{{ portfolio_summary.stock_market_value_display }}원</span>
+                </div>
+            </section>
+
+            <!-- 보유 주식 목록 -->
+            <section class="stock-list">
+                {% for item in my_stocks %}
+                <div class="card stock-item item">
+                    <div class="stock-info-left item">
+                        <div class="stock-icon icon-a item"></div>
+                        <div>
+                            <div class="stock-name">{{ item.company_name }}</div>
+                            <div class="stock-meta">보유 {{ item.quantity_display }}주 · 평균 {{ item.average_price_display }}원</div>
+                        </div>
+                    </div>
+                    <div class="stock-info-right">
+                        <div class="stock-price">{{ item.current_price_display }}<span class="unit">원</span></div>
+                        <div class="market-value">평가 {{ item.market_value_display }}원</div>
+                        <div class="profit-loss {{ item.profit_loss_class }}">{{ item.profit_loss_display }}원 ({{ item.profit_loss_percent_display }})</div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card empty-stock-list">보유 중인 종목이 없습니다.</div>
+                {% endfor %}
+            </section>
+        </main>
+
+        <div>
+            <!-- 네비게이션 바 -->
+            {% include '_navigation.html' %}
+        </div>
+
+    </div>
+</body>
+</html>

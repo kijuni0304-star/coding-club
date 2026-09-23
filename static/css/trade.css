@@ -1,0 +1,253 @@
+:root {
+    --buy: var(--buy-up);
+    --buy-hover: #d92e24;
+    --sell: var(--sell-down);
+    --sell-hover: #1f6fd1;
+}
+
+
+/* 상단 종목 정보 */
+.stock-header {
+    min-height: 240px;
+    background: #101012;
+    color: white;
+    padding: 24px 20px;
+}
+
+.stock-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 42px;
+}
+
+.back {
+    font-size: 32px;
+    color: #9ca3af;
+    cursor: pointer;
+    user-select: none;
+}
+
+.stock-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.stock-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.current-price {
+    color: var(--buy-up);
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+.current-price.down {
+    color: var(--sell);
+}
+.current-price.flat {
+    color: #ffffff;
+}
+
+.change-info {
+    color: var(--buy-up);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    padding-top: 9px;
+}
+.change-info.text-blue {
+    color: var(--sell-down);
+}
+.change-info.text-neutral {
+    color: var(--neutral);
+}
+
+.change-percent {
+    text-align: center;
+}
+
+.stock-right {
+    text-align: right;
+    color: #b4b4bb;
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 600;
+    padding-top: 7px;
+}
+
+
+/* 주문 영역 */
+.trade-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--surface);
+}
+
+.trade-box {
+    min-width: 0;
+}
+
+.trade-box + .trade-box {
+    border-left: 1px solid var(--border);
+}
+
+.trade-title {
+    text-align: center;
+    padding: 26px 10px 22px;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.buy .trade-title {
+    color: var(--buy);
+    border-bottom: 4px solid var(--buy);
+}
+
+.sell .trade-title {
+    color: var(--sell);
+    border-bottom: 4px solid var(--sell);
+}
+
+.trade-content {
+    padding: 24px 12px;
+}
+
+.field {
+    margin-bottom: 34px;
+}
+
+.field-label {
+    display: block;
+    color: #9ca3af;
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.control {
+    width: 100%;
+    height: 72px;
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    align-items: center;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.control button {
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.control button:hover {
+    background: var(--surface-alt);
+    color: var(--text);
+}
+
+.control-value {
+    text-align: center;
+    font-size: 21px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.unit {
+    margin-left: 5px;
+    color: #9ca3af;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -10px 0 28px;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.order-total strong {
+    color: var(--text);
+    font-size: 17px;
+}
+
+/* 주문 버튼 */
+.trade-button {
+    width: 100%;
+    height: 88px;
+    border: none;
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+}
+
+.trade-button:hover {
+    opacity: 0.9;
+}
+
+.trade-button:active {
+    transform: scale(0.98);
+}
+
+.trade-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.order-result {
+    min-height: 20px;
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.buy .order-result.success { color: var(--buy-up); }
+.sell .order-result.success { color: var(--sell-down); }
+.order-result.error { color: #dc2626; }
+.order-result.info { color: #6b7280; }
+
+.buy-button {
+    background: var(--buy);
+}
+
+.buy-button:hover {
+    background: var(--buy-hover);
+}
+
+.sell-button {
+    background: var(--sell);
+}
+
+.sell-button:hover {
+    background: var(--sell-hover);
+}
+
+.back { text-decoration: none; }
+.stock-summary, .stock-main { flex-wrap: wrap; gap: 12px; }
+.stock-summary > div { min-width: 0; }
+.current-price { overflow-wrap: anywhere; }
+.market-price { grid-template-columns: minmax(0, 1fr); }
+.order-total { flex-wrap: wrap; gap: 6px; }
+.order-total strong, .order-result { overflow-wrap: anywhere; }
+.order-note { padding: 16px 20px; color: var(--muted); font-size: 13px; }
+@media (max-width: 400px) {
+    .trade-area { grid-template-columns: minmax(0, 1fr); }
+    .trade-box + .trade-box { border-left: 0; border-top: 1px solid var(--border); }
+    .stock-main { flex-direction: column; }
+}

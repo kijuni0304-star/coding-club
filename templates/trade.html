@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>주식 주문</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/trade.css') }}">
+
+</head>
+<body data-stock-page="trade" data-selected-stock-id="{{ stock.id }}" data-initial-current-price="{{ stock.current_price }}" data-stocks-api="{{ url_for('stocks_api') }}" data-buy-url="{{ url_for('buy_order_api') }}" data-sell-url="{{ url_for('sell_order_api') }}" data-csrf-token="{{ csrf_token }}">
+<div class="app">
+  <section class="stock-header">
+    <div class="stock-title">
+      <a class="back" href="{{ url_for('ranking') }}" aria-label="종목 순위로 돌아가기">‹</a>
+      <span data-company-name>{{ stock.company_name }}</span>
+    </div>
+
+    <div class="stock-summary">
+      <div>
+        <div class="stock-main">
+          <div class="current-price {{ stock.direction }}" data-current-price>{{ stock.current_price_display }}</div>
+          <div class="change-info {{ stock.change_class }}" data-change-info>
+            <div data-change-amount>{{ stock.change_amount_display }}</div>
+            <div class="change-percent" data-change-percent>{{ stock.change_percent_display }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="stock-right">
+        <div>직전가 <span data-previous-price>{{ stock.previous_price_display }}</span></div>
+        <div data-change-percent>{{ stock.change_percent_display }}</div>
+      </div>
+    </div>
+  </section>
+
+  <p class="order-note">주문 총액은 예상 금액이며, 접수 시점의 서버 현재가로 체결됩니다.</p>
+  <section class="trade-area">
+    <div class="trade-box buy">
+      <div class="trade-title">매수</div>
+      <div class="trade-content">
+        <div class="field">
+          <span class="field-label">수량</span>
+          <div class="control">
+              <button type="button" data-action="quantity" data-side="buy" data-delta="-1">−</button>
+            <div class="control-value">
+              <span id="buyQuantity">1</span>
+              <span class="unit">주</span>
+            </div>
+              <button type="button" data-action="quantity" data-side="buy" data-delta="1">+</button>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label">현재가 (시장가 체결)</span>
+          <div class="control market-price">
+              <div class="control-value">
+              <span id="buyPrice" data-order-price data-side="buy">{{ stock.current_price_display }}</span><span class="unit">원</span>
+              </div>
+            </div>
+          </div>
+        <div class="order-total">
+          <span>주문 총액</span>
+          <strong><span data-total-amount data-side="buy">{{ stock.current_price_display }}</span>원</strong>
+        </div>
+        <button type="button" class="trade-button buy-button" data-action="order" data-side="buy">매수</button>
+        <div class="order-result" data-order-result data-side="buy" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="trade-box sell">
+      <div class="trade-title">매도</div>
+      <div class="trade-content">
+        <div class="field">
+          <span class="field-label">수량</span>
+          <div class="control">
+              <button type="button" data-action="quantity" data-side="sell" data-delta="-1">−</button>
+            <div class="control-value">
+              <span id="sellQuantity">1</span>
+              <span class="unit">주</span>
+            </div>
+              <button type="button" data-action="quantity" data-side="sell" data-delta="1">+</button>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label">현재가 (시장가 체결)</span>
+          <div class="control market-price">
+              <div class="control-value">
+              <span id="sellPrice" data-order-price data-side="sell">{{ stock.current_price_display }}</span><span class="unit">원</span>
+              </div>
+            </div>
+          </div>
+        <div class="order-total">
+          <span>주문 총액</span>
+          <strong><span data-total-amount data-side="sell">{{ stock.current_price_display }}</span>원</strong>
+        </div>
+        <button type="button" class="trade-button sell-button" data-action="order" data-side="sell">매도</button>
+        <div class="order-result" data-order-result data-side="sell" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="nav-container">
+    {% include '_navigation.html' %}
+  </div>  
+</div>
+<script defer src="{{ url_for('static', filename='js/stock-prices.js') }}"></script>
+<script defer src="{{ url_for('static', filename='js/trade.js') }}"></script>
+</body>
+</html>

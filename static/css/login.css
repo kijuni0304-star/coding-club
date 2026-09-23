@@ -1,0 +1,87 @@
+/* 메인 컨테이너 */
+.login-container {
+    align-self: center;
+    padding: 40px 20px;
+}
+
+/* 타이틀 영역 */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+}
+
+.header p {
+    color: #777777;
+    font-size: 15px;
+}
+
+/* 입력 폼 영역 */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #aaaaaa;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #2a2a30;
+    background-color: #1a1a1f;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s; 
+}
+
+.input-group input:focus {
+    border-color: #db3a3d;
+    box-shadow: 0 0 0 3px rgba(219, 58, 61, 0.2); 
+}
+
+.input-group input::placeholder {
+    color: #555555;
+}
+
+/* 로그인 버튼 */
+.login-btn {
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #db3a3d;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s, transform 0.1s; 
+}
+
+.login-btn:hover {
+    background-color: #c93033;
+}
+
+.login-btn:active {
+    transform: scale(0.98); 
+}
+
+/* 에러 메시지 스타일 */
+.error-msg {
+    color: #db3a3d;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>거래 내역</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="subtitle">한빛 주식</div>
+            <h1>거래 내역</h1>
+        </header>
+
+        <main class="main-content">
+            <section class="history-list" aria-label="거래 내역 목록">
+                {% for transaction in transactions %}
+                <article class="history-item">
+                    <div class="transaction-left">
+                        <div class="company-name">{{ transaction.company_name }}</div>
+                        <time class="transaction-time">{{ transaction.created_at_display }}</time>
+                    </div>
+                    <div class="transaction-right">
+                        <div>
+                            <span class="transaction-type {{ transaction.transaction_type_class }}">{{ transaction.transaction_type_label }}</span>
+                            <span class="transaction-detail">{{ transaction.quantity_display }}주 · {{ transaction.price_display }}원</span>
+                        </div>
+                        <div class="total-amount">{{ transaction.total_amount_display }}원</div>
+                    </div>
+                </article>
+                {% else %}
+                <div class="empty-history">거래 내역이 없습니다.</div>
+                {% endfor %}
+            </section>
+        </main>
+
+        {% include '_navigation.html' %}
+    </div>
+</body>
+</html>

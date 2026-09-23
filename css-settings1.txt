@@ -1,0 +1,995 @@
+/* Stock Trading Dashboard */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+position: relative;
+width: 402px;
+height: 874px;
+
+background: #111116;
+transform: rotate(-0.45deg);
+
+
+/* App */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 402px;
+height: 874px;
+
+background: #111116;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 402px;
+height: 759.48px;
+
+background: #111116;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* LoginPage */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px 22.5px;
+
+width: 402px;
+height: 755px;
+
+background: #0D0D12;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 360px;
+max-width: 360px;
+height: 464.25px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 360px;
+height: 56.5px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Container */
+
+width: 360px;
+height: 37.5px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0px;
+gap: 7.5px;
+
+position: absolute;
+width: 162px;
+height: 30px;
+left: 92.35px;
+top: 3.85px;
+
+transform: rotate(-0.45deg);
+
+
+/* Text */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+
+width: 162px;
+height: 30px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 주식프로그램이름 */
+
+width: 162px;
+height: 30px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 700;
+font-size: 22.5px;
+line-height: 30px;
+/* 상자 높이와 동일 또는 133% */
+text-align: center;
+letter-spacing: -0.5625px;
+
+color: #FFFFFF;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Paragraph */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+
+width: 360px;
+height: 19px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* 국내외 주식 통합 거래 플랫폼 */
+
+width: 157px;
+height: 19px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 400;
+font-size: 13.125px;
+line-height: 19px;
+/* 상자 높이와 동일 또는 143% */
+text-align: center;
+
+color: #5A5A78;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 37.5px 0px 0px;
+
+width: 360px;
+height: 240.25px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 360px;
+height: 63.88px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Label */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 0px 5.625px;
+
+width: 360px;
+height: 20.62px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 아이디 */
+
+width: 32px;
+height: 15px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 11.25px;
+line-height: 15px;
+/* 상자 높이와 동일 또는 133% */
+
+color: #7878A0;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Text Input */
+
+box-sizing: border-box;
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 11.25px 15px;
+
+width: 360px;
+height: 43.25px;
+
+background: #1A1A22;
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 9.375px;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* 아이디를 입력하세요 */
+
+width: 328px;
+height: 16px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 400;
+font-size: 13.125px;
+line-height: 16px;
+/* 상자 높이와 동일 */
+
+color: #44445A;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 11.25px 0px;
+
+width: 360px;
+height: 86.38px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* Label */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px 0px 5.625px;
+
+width: 360px;
+height: 20.62px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 비밀번호 */
+
+width: 42px;
+height: 15px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 11.25px;
+line-height: 15px;
+/* 상자 높이와 동일 또는 133% */
+
+color: #7878A0;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Password Input */
+
+box-sizing: border-box;
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+padding: 11.25px 15px;
+
+width: 360px;
+height: 43.25px;
+
+background: #1A1A22;
+border: 1px solid rgba(255, 255, 255, 0.08);
+border-radius: 9.375px;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* 비밀번호를 입력하세요 */
+
+width: 328px;
+height: 16px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 400;
+font-size: 13.125px;
+line-height: 16px;
+/* 상자 높이와 동일 */
+
+color: #44445A;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Container */
+
+width: 360px;
+height: 52.5px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 2;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Button */
+
+position: absolute;
+width: 360px;
+height: 45px;
+left: 0.06px;
+top: 7.5px;
+
+background: #D63030;
+border-radius: 9.375px;
+transform: rotate(-0.45deg);
+
+
+/* 로그인 */
+
+position: absolute;
+width: 37px;
+height: 19px;
+left: 161.96px;
+top: 11.9px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 600;
+font-size: 13.125px;
+line-height: 19px;
+/* 상자 높이와 동일 또는 143% */
+text-align: center;
+
+color: #FFFFFF;
+
+transform: rotate(-0.45deg);
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 22.5px 0px 0px;
+gap: 15px;
+
+width: 360px;
+height: 45.5px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* Button */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 73px;
+height: 23px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* 아이디 찾기 */
+
+width: 73px;
+height: 23px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 22px;
+/* 상자 높이와 동일 또는 150% */
+text-align: center;
+
+color: #5A5A78;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Text */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 4px;
+height: 15px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 1;
+flex-grow: 0;
+
+
+/* | */
+
+width: 4px;
+height: 15px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 400;
+font-size: 11.25px;
+line-height: 15px;
+/* 상자 높이와 동일 또는 133% */
+
+color: #2A2A38;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Button */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 87px;
+height: 23px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 2;
+flex-grow: 0;
+
+
+/* 비밀번호 찾기 */
+
+width: 87px;
+height: 23px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 22px;
+/* 상자 높이와 동일 또는 150% */
+text-align: center;
+
+color: #5A5A78;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Text */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 0px;
+
+width: 4px;
+height: 15px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 3;
+flex-grow: 0;
+
+
+/* | */
+
+width: 4px;
+height: 15px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 400;
+font-size: 11.25px;
+line-height: 15px;
+/* 상자 높이와 동일 또는 133% */
+
+color: #2A2A38;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Button */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+
+width: 56px;
+height: 23px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 4;
+flex-grow: 0;
+
+
+/* 회원가입 */
+
+width: 56px;
+height: 23px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 22px;
+/* 상자 높이와 동일 또는 150% */
+text-align: center;
+
+color: #5A5A78;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Container:margin */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 30px 0px 0px;
+
+width: 360px;
+height: 122px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 3;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Container */
+
+box-sizing: border-box;
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 15px;
+
+width: 360px;
+height: 92px;
+
+background: #1A1A22;
+border: 1px solid rgba(255, 255, 255, 0.05);
+border-radius: 13.375px;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Paragraph */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0px;
+
+width: 328px;
+height: 15px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* 간편 로그인 */
+
+width: 55px;
+height: 15px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 400;
+font-size: 11.25px;
+line-height: 15px;
+/* 상자 높이와 동일 또는 133% */
+text-align: center;
+
+color: #5A5A78;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Container */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+padding: 11.25px 0px 0px;
+gap: 11.25px;
+
+width: 328px;
+height: 45px;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+
+
+/* Button */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 9.375px 0px;
+
+width: 101.83px;
+height: 33.75px;
+
+background: #252530;
+border-radius: 9.375px;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 102;
+
+
+/* 카카오 */
+
+width: 32px;
+height: 15px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 11.25px;
+line-height: 15px;
+/* 상자 높이와 동일 또는 133% */
+text-align: center;
+
+color: #9090B8;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Button */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 9.375px 0px;
+
+width: 101.84px;
+height: 33.75px;
+
+background: #252530;
+border-radius: 9.375px;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 1;
+flex-grow: 102;
+
+
+/* 네이버 */
+
+width: 32px;
+height: 15px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 11.25px;
+line-height: 15px;
+/* 상자 높이와 동일 또는 133% */
+text-align: center;
+
+color: #9090B8;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;
+
+
+/* Button */
+
+/* 오토레이아웃 */
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 9.375px 0px;
+
+width: 101.84px;
+height: 33.75px;
+
+background: #252530;
+border-radius: 9.375px;
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 2;
+flex-grow: 102;
+
+
+/* 삼성패스 */
+
+width: 42px;
+height: 15px;
+
+font-family: 'Noto Sans KR';
+font-style: normal;
+font-weight: 500;
+font-size: 11.25px;
+line-height: 15px;
+/* 상자 높이와 동일 또는 133% */
+text-align: center;
+
+color: #9090B8;
+
+transform: rotate(-0.45deg);
+
+/* 내부 오토레이아웃 */
+flex: none;
+order: 0;
+flex-grow: 0;

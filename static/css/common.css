@@ -1,0 +1,119 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+:root {
+    --page-bg: #111215;
+    --surface: #19202D;
+    --surface-alt: #191919;
+    --border: #242A38;
+    --muted: #8A92A3;
+    --text: #ffffff;
+    --buy-up: #FF5252;
+    --sell-down: #4D8DFF;
+    --neutral: #8A92A3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+body {
+    background-color: var(--page-bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.app-container,
+.app {
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+.app-container {
+    background-color: var(--page-bg);
+    max-width: 480px;
+    padding-bottom: 80px;
+}
+
+.app {
+    background-color: var(--page-bg);
+    max-width: 480px;
+}
+
+.login-container {
+    max-width: 480px;
+    width: 100%;
+}
+
+.bottom-nav {
+    align-items: center;
+    background-color: var(--surface-alt);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px auto;
+    padding: 16px 0;
+    width: 100%;
+}
+
+.nav-item {
+    align-items: center;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    text-decoration: none;
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    opacity: 0.8;
+}
+
+.nav-item svg {
+    fill: none;
+    height: 28px;
+    stroke: #666666;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+    width: 28px;
+}
+
+.nav-item.active svg {
+    fill: rgba(255, 255, 255, 0.1);
+    filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.6));
+    stroke: #ffffff;
+}
+
+.text-red,
+.positive {
+    color: var(--buy-up);
+}
+
+.text-blue,
+.negative {
+    color: var(--sell-down);
+}
+
+.text-neutral {
+    color: var(--neutral);
+}
+
+@media (max-width: 480px) {
+    .app,
+    .app-container {
+        max-width: 100%;
+    }
+}
+:root { color-scheme: dark; }
+button.nav-item { background: transparent; border: 0; cursor: pointer; }
+.nav-item:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid var(--sell-down); outline-offset: 2px; }
+.app, .app-container, .login-container { min-width: 0; }
