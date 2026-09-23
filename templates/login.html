@@ -14,7 +14,7 @@
     <div class="login-container">
         <div class="header">
             <h1>한빛 주식</h1>
-            <p>학교용 모의주식 · user1~user10 간편 로그인</p>
+            <p>학교용 모의주식 · user1~user10 학생</p>
         </div>
 
         <!-- 로그인 폼 -->
@@ -24,6 +24,10 @@
                 <label for="nickname">아이디 (닉네임)</label>
                 <!-- name="nickname"은 서버와 통신하기 위해 꼭 필요합니다 -->
                 <input type="text" id="nickname" name="nickname" placeholder="아이디를 입력하세요" required>
+            </div>
+            <div class="input-group">
+                <label for="password">비밀번호</label>
+                <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
             </div>
             
             <!-- 에러 메시지 출력 영역 (틀린 아이디 입력 시에만 나타남) -->

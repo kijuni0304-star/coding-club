@@ -22,16 +22,18 @@ from flask import (
     url_for,
 )
 
-from models import PortfolioItem, Stock, Transaction, User, db
+from models import PortfolioItem, PriceUpdateRun, Stock, Transaction, User, db
 from database_write import begin_database_write
 from order_service import execute_buy_order, execute_sell_order
 from order_validation import OrderValidationError, validate_order_request
 from order_validation import MAX_DATABASE_INTEGER, parse_order_payload
 from portfolio_service import build_portfolio_items, calculate_portfolio_summary
 from transaction_history_service import build_transaction_history
+from manager_auth import HASH_FILE, verify_manager_password
 
 
 PREDEFINED_USERS = tuple(f"user{number}" for number in range(1, 11))
+MANAGER_ID = "manager"
 INITIAL_CASH = 1_000_000
 INITIAL_STOCK_PRICES = {
     "회사 A": 10_000,
@@ -91,6 +93,36 @@ def stock_display_data(stock):
     }
 
 
+def reset_application_data():
+    """모든 모의 거래 데이터를 지우고 기본 사용자·종목 상태로 복구한다."""
+    try:
+        begin_database_write()
+        # 거래 참조를 먼저 지운 뒤 보유, 사용자, 종목 순으로 비운다.
+        db.session.query(Transaction).delete(synchronize_session=False)
+        db.session.query(PortfolioItem).delete(synchronize_session=False)
+        db.session.query(PriceUpdateRun).delete(synchronize_session=False)
+        db.session.query(User).delete(synchronize_session=False)
+        db.session.query(Stock).delete(synchronize_session=False)
+        db.session.expunge_all()
+
+        db.session.add_all(
+            User(nickname=nickname, cash=INITIAL_CASH)
+            for nickname in PREDEFINED_USERS
+        )
+        db.session.add_all(
+            Stock(
+                company_name=company_name,
+                current_price=initial_price,
+                previous_price=initial_price,
+            )
+            for company_name, initial_price in INITIAL_STOCK_PRICES.items()
+        )
+        db.session.commit()
+    except Exception:
+        db.session.rollback()
+        raise
+
+
 def ranked_stock_display_data():
     """등락률 순으로 정렬한 공용 주가 표시 데이터를 반환한다."""
     stocks = [stock_display_data(stock) for stock in Stock.query.all()]
@@ -122,6 +154,11 @@ def create_app(test_config=None):
     if test_config:
         app.config.update(test_config)
 
+    if not app.config.get("MANAGER_PASSWORD_HASH") and HASH_FILE.is_file():
+        app.config["MANAGER_PASSWORD_HASH"] = HASH_FILE.read_text(
+            encoding="utf-8"
+        ).strip()
+
     if not app.config.get("SECRET_KEY"):
         raise RuntimeError(
             "SECRET_KEY 환경변수를 설정해야 합니다. README의 실행 방법을 확인하세요."
@@ -148,7 +185,9 @@ def create_app(test_config=None):
 
     @app.before_request
     def protect_session_forms():
-        if request.method == "POST" and request.endpoint in {"login", "logout"}:
+        if request.method == "POST" and request.endpoint in {
+            "login", "logout", "manager_reset"
+        }:
             if not valid_csrf(request.form.get("csrf_token")):
                 abort(403)
 
@@ -183,9 +222,17 @@ def create_app(test_config=None):
             session["csrf_token"] = secrets.token_urlsafe(32)
         return user
 
+    def is_manager_session():
+        return (
+            session.get("is_manager") is True
+            and session.get("nickname") == MANAGER_ID
+        )
+
     def login_required(view):
         @wraps(view)
         def wrapped_view(*args, **kwargs):
+            if is_manager_session():
+                return redirect(url_for("manager_console"))
             current_user = get_session_user()
             if current_user is None:
                 return redirect(url_for("login"))
@@ -194,10 +241,32 @@ def create_app(test_config=None):
 
         return wrapped_view
 
+    def manager_required(view):
+        @wraps(view)
+        def wrapped_view(*args, **kwargs):
+            if not is_manager_session():
+                if get_session_user() is None:
+                    return redirect(url_for("login"))
+                abort(403)
+            return view(*args, **kwargs)
+
+        return wrapped_view
+
     def api_session_required(view):
         """API 요청에 유효한 로그인 세션과 POST CSRF 토큰을 요구한다."""
         @wraps(view)
         def wrapped_view(*args, **kwargs):
+            if is_manager_session():
+                return (
+                    jsonify(
+                        success=False,
+                        error={
+                            "code": "AUTHENTICATION_REQUIRED",
+                            "message": "학생 계정으로 로그인해 주세요.",
+                        },
+                    ),
+                    401,
+                )
             current_user = get_session_user()
             if current_user is None:
                 return (
@@ -234,18 +303,39 @@ def create_app(test_config=None):
     def login():
         if request.method == "POST":
             nickname_value = request.form.get("nickname", "")
+            password_value = request.form.get("password", "")
             input_nickname = (
                 nickname_value.strip()
                 if isinstance(nickname_value, str) and len(nickname_value) <= 80
                 else ""
             )
+            input_password = (
+                password_value
+                if isinstance(password_value, str) and len(password_value) <= 128
+                else ""
+            )
+            if input_nickname == MANAGER_ID and verify_manager_password(
+                input_password, app.config.get("MANAGER_PASSWORD_HASH")
+            ):
+                session.clear()
+                session.permanent = True
+                session["is_manager"] = True
+                session["nickname"] = MANAGER_ID
+                session["csrf_token"] = secrets.token_urlsafe(32)
+                return redirect(url_for("manager_console"))
+
             user = (
                 User.query.filter_by(nickname=input_nickname).first()
                 if input_nickname in PREDEFINED_USERS
                 else None
             )
 
-            if user is not None:
+            expected_password = (
+                f"resu{input_nickname[4:]}!@" if user is not None else ""
+            )
+            if user is not None and hmac.compare_digest(
+                input_password.encode("utf-8"), expected_password.encode("utf-8")
+            ):
                 session.clear()
                 session.permanent = True
                 session["user_id"] = user.id
@@ -254,10 +344,49 @@ def create_app(test_config=None):
                 return redirect(url_for("portfolio"))
 
             return render_template(
-                "login.html", error_msg="등록되지 않은 아이디(닉네임)입니다."
+                "login.html", error_msg="아이디 또는 비밀번호가 올바르지 않습니다."
             )
 
         return render_template("login.html", error_msg=None)
+
+    @app.get("/manager")
+    @manager_required
+    def manager_console():
+        return render_template(
+            "manager.html",
+            reset_done=request.args.get("reset") == "1",
+            error_msg=None,
+            stats={
+                "users": User.query.count(),
+                "stocks": Stock.query.count(),
+                "holdings": PortfolioItem.query.count(),
+                "transactions": Transaction.query.count(),
+                "price_updates": PriceUpdateRun.query.count(),
+            },
+        )
+
+    @app.post("/manager/reset")
+    @manager_required
+    def manager_reset():
+        if request.form.get("confirmation") != "전체 초기화":
+            return (
+                render_template(
+                    "manager.html",
+                    reset_done=False,
+                    error_msg="확인 문구가 올바르지 않습니다.",
+                    stats={
+                        "users": User.query.count(),
+                        "stocks": Stock.query.count(),
+                        "holdings": PortfolioItem.query.count(),
+                        "transactions": Transaction.query.count(),
+                        "price_updates": PriceUpdateRun.query.count(),
+                    },
+                ),
+                403,
+            )
+
+        reset_application_data()
+        return redirect(url_for("manager_console", reset="1"))
 
     @app.post("/logout")
     def logout():

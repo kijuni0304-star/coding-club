@@ -14,6 +14,7 @@ const path = require("node:path");
     const base = process.argv[2];
     await page.goto(base);
     await page.locator("#nickname").fill("user1");
+    await page.locator("#password").fill("resu1!@");
     await page.getByRole("button", {name: "로그인", exact: true}).click();
     await page.waitForURL("**/portfolio");
     for (const width of [320, 375, 480, 1280]) {
@@ -82,9 +83,31 @@ const path = require("node:path");
     await page.waitForURL(base + "/");
     await page.goto(base + "/portfolio");
     assert.equal(page.url(), base + "/");
+
+    await page.locator("#nickname").fill("manager");
+    await page.locator("#password").fill("test-manager-password");
+    await page.getByRole("button", {name: "로그인", exact: true}).click();
+    await page.waitForURL("**/manager");
+    await page.setViewportSize({width: 375, height: 900});
+    const managerGeometry = await page.evaluate(() => ({
+      viewport: innerWidth,
+      scroll: document.documentElement.scrollWidth,
+      container: document.querySelector(".manager-container").getBoundingClientRect().width,
+    }));
+    assert.ok(managerGeometry.scroll <= 375, JSON.stringify(managerGeometry));
+    assert.ok(managerGeometry.container <= 480, JSON.stringify(managerGeometry));
+    assert.equal(await page.locator("#reset-button").isEnabled(), false);
+    await page.locator("#confirmation").fill("전체 초기화");
+    assert.equal(await page.locator("#reset-button").isEnabled(), true);
+    await page.locator("#reset-button").click();
+    await page.waitForURL("**/manager?reset=1");
+    await page.getByRole("status").getByText("초기화가 완료됐습니다").waitFor();
+    assert.equal(await page.locator(".data-summary dd").nth(0).innerText(), "10");
+    assert.equal(await page.locator(".data-summary dd").nth(2).innerText(), "0");
+    assert.equal(await page.locator(".data-summary dd").nth(3).innerText(), "0");
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({pages:5, widths:[320,375,480,1280],
-      checks:["login","buy","sell","exact server price","polling/reorder/link","colors","logout","no JS errors","no horizontal overflow/overlap"]}));
+    console.log(JSON.stringify({pages:6, widths:[320,375,480,1280],
+      checks:["login","buy","sell","exact server price","polling/reorder/link","colors","logout","manager login","confirmed full reset","manager layout","no JS errors","no horizontal overflow/overlap"]}));
   } finally {
     await browser.close();
   }

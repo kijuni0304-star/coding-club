@@ -1,6 +1,6 @@
 # 한빛코딩 모의주식
 
-Flask·SQLite 기반 학교용 모의주식 프로그램입니다. `user1`~`user10`으로 간편 로그인하고 회사 A~J를 거래합니다. 실제 돈이나 외부 증권사와 연결하지 않습니다.
+Flask·SQLite 기반 학교용 모의주식 프로그램입니다. `user1`~`user10`으로 로그인하고 회사 A~J를 거래합니다. `manager`로 로그인하면 초기화 관리 화면을 엽니다. 실제 돈이나 외부 증권사와 연결하지 않습니다.
 
 ## 실행 방법 (Windows PowerShell)
 
@@ -18,6 +18,8 @@ $env:SECRET_KEY = (& .\venv\Scripts\python.exe -c "import secrets; print(secrets
 - `SECRET_KEY`가 없으면 실행을 중단합니다. 위 예시는 임시 개발 키입니다. 키를 새로 만들면 기존 로그인이 무효화되므로 지속 운영 시에는 충분히 긴 무작위 값을 실행 환경에 안전하게 보관하고 재사용하세요. 여러 프로세스는 같은 키를 사용해야 합니다. 저장소에 키를 커밋하지 마세요.
 - HTTPS 배포 시에는 `$env:SESSION_COOKIE_SECURE = "1"`을 설정하세요. 로컬 HTTP에서는 설정하지 않습니다. 외부 공개에는 별도의 운영 서버·HTTPS 설정이 필요합니다. 디버그 모드는 외부에 공개하지 마세요.
 - 기본 DB는 `instance/trading.db`입니다. `DATABASE_URL`로 변경할 수 있지만 이번 통합 검증의 지원 기준은 로컬 SQLite 파일 DB입니다. 다른 DB 엔진이나 네트워크 공유 파일은 별도 검증이 필요합니다.
+- 학생 계정 비밀번호는 계정 번호에 따라 `resu1!@`부터 `resu10!@`까지입니다. `manager` 로그인 비밀번호는 로컬 `instance/manager_password.hash`에서 확인하며 저장소에 포함되지 않습니다. 새 환경에서는 `.\venv\Scripts\python.exe manager_auth.py`를 실행해 비밀번호를 설정하세요.
+- 관리 화면에서 `전체 초기화`를 입력해야 데이터 초기화가 실행됩니다. 학생 비밀번호는 규칙을 알면 추측할 수 있으므로 신뢰할 수 없는 네트워크나 외부 공개 환경에서는 사용하지 마세요.
 
 ## 초기 데이터와 구조
 
@@ -112,7 +114,7 @@ Move-Item -LiteralPath .\instance\trading.db -Destination (Join-Path .\instance 
 .\venv\Scripts\python.exe -m pip check
 ```
 
-인증·격리·잘못된 입력·CSRF·서버 가격 체결·롤백·평가 계산·링크·다중 프로세스 동시 주문/주가 갱신/초기화를 검사합니다.
+인증·격리·잘못된 입력·CSRF·서버 가격 체결·롤백·평가 계산·링크·다중 프로세스 동시 주문/주가 갱신/초기화와 관리자 데이터 초기화를 검사합니다.
 
 실제 다음 분 경계까지 기다리는 스케줄러 검사는 선택 실행합니다(최대 약 65초).
 

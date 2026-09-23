@@ -1,8 +1,13 @@
-def login_client(client, nickname="user1"):
+def login_client(client, nickname="user1", password=None):
     client.get("/")
     with client.session_transaction() as state:
         token = state["csrf_token"]
-    return client.post("/", data={"nickname": nickname, "csrf_token": token})
+    if password is None and nickname.startswith("user"):
+        password = f"resu{nickname[4:]}!@"
+    return client.post(
+        "/",
+        data={"nickname": nickname, "password": password or "", "csrf_token": token},
+    )
 
 
 def logout_client(client):

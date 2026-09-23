@@ -14,6 +14,7 @@ os.environ["SECRET_KEY"] = "browser-test-only-secret"
 
 from werkzeug.serving import make_server
 from app import create_app
+from manager_auth import hash_manager_password
 from models import db, Stock
 from order_service import execute_buy_order
 
@@ -21,7 +22,9 @@ from order_service import execute_buy_order
 def main():
     logging.getLogger("werkzeug").setLevel(logging.ERROR)
     with TemporaryDirectory() as directory:
-        app = create_app({"TESTING": True, "SQLALCHEMY_DATABASE_URI":
+        app = create_app({"TESTING": True,
+                          "MANAGER_PASSWORD_HASH": hash_manager_password("test-manager-password"),
+                          "SQLALCHEMY_DATABASE_URI":
                           "sqlite:///" + (Path(directory) / "browser.db").as_posix()})
         with app.app_context():
             execute_buy_order(user_id=1, payload={"stock_id": 1, "quantity": 2})

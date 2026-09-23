@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 데이터 초기화</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manager.css') }}">
+</head>
+<body>
+    <main class="app-container manager-container">
+        <header class="manager-header">
+            <span class="manager-label">MANAGER</span>
+            <h1>데이터 관리</h1>
+            <p>모의주식 수업 데이터를 초기 상태로 되돌립니다.</p>
+        </header>
+
+        <div class="notice manager-auth-notice" role="note">
+            관리자 비밀번호로 로그인했습니다. 초기화하려면 아래 확인 문구를 입력하세요.
+        </div>
+
+        {% if reset_done %}
+        <div class="notice success" role="status">초기화가 완료됐습니다. 학생 계정 잔액과 종목 가격이 기본값으로 돌아갔습니다.</div>
+        {% endif %}
+        {% if error_msg %}
+        <div class="notice error" role="alert">{{ error_msg }}</div>
+        {% endif %}
+
+        <section class="manager-card" aria-labelledby="data-summary-title">
+            <h2 id="data-summary-title">현재 데이터</h2>
+            <dl class="data-summary">
+                <div><dt>학생 계정</dt><dd>{{ stats.users }}</dd></div>
+                <div><dt>종목</dt><dd>{{ stats.stocks }}</dd></div>
+                <div><dt>보유 항목</dt><dd>{{ stats.holdings }}</dd></div>
+                <div><dt>거래 내역</dt><dd>{{ stats.transactions }}</dd></div>
+                <div><dt>주가 갱신 기록</dt><dd>{{ stats.price_updates }}</dd></div>
+            </dl>
+        </section>
+
+        <section class="warning-card" aria-labelledby="reset-title">
+            <h2 id="reset-title">전체 데이터 초기화</h2>
+            <p>초기화하면 모든 학생의 잔액·보유 주식·거래 내역과 주가 변경 기록이 삭제됩니다. 종목 가격은 처음 값으로 복구됩니다.</p>
+            <p class="warning-emphasis">이 작업은 되돌릴 수 없습니다.</p>
+
+            <form action="{{ url_for('manager_reset') }}" method="post" id="reset-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token_value() }}">
+                <label for="confirmation">계속하려면 <strong>전체 초기화</strong>를 입력하세요.</label>
+                <input id="confirmation" name="confirmation" type="text"
+                       pattern="전체 초기화" autocomplete="off" required
+                       aria-describedby="confirmation-help">
+                <p id="confirmation-help" class="helper-text">확인 문구를 정확히 입력해야 실행할 수 있습니다.</p>
+                <button type="submit" id="reset-button" disabled>모든 데이터 초기화</button>
+            </form>
+        </section>
+
+        <form action="{{ url_for('logout') }}" method="post" class="logout-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token_value() }}">
+            <button type="submit">로그아웃</button>
+        </form>
+    </main>
+    <script>
+        const confirmation = document.getElementById('confirmation');
+        const resetButton = document.getElementById('reset-button');
+        confirmation.addEventListener('input', () => {
+            resetButton.disabled = confirmation.value !== '전체 초기화';
+        });
+    </script>
+</body>
+</html>
